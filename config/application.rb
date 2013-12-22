@@ -1,5 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
+require File.expand_path('../variables', __FILE__)
+
 # Pick the frameworks you want:
 require "active_record/railtie"
 require "action_controller/railtie"
@@ -39,11 +41,13 @@ module DeviseApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.i18n.enforce_available_locales = false
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -64,5 +68,16 @@ module DeviseApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => true,
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => true,
+        :controller_specs => true,
+        :request_specs => true
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
   end
 end

@@ -1,0 +1,5 @@
+ENV['GMAIL_USERNAME'] = 'Your_Username'
+ENV['GMAIL_PASSWORD'] = 'Your_Password'
+ENV['ADMIN_NAME'] = 'First User'
+ENV['ADMIN_EMAIL'] = 'user@example.com'
+ENV['ADMIN_PASSWORD'] = 'changeme'
